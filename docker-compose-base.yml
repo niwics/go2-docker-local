@@ -1,0 +1,17 @@
+# Docker Compose file for running the website(s) in Docker
+# author niwi.cz
+# This file should include particular docker-compose files from websites. See see github.com/niwics/go2-docker-local
+
+ngproxy:
+  image: jwilder/nginx-proxy
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+  ports:
+    - 80:80
+
+adminer:
+  image: clue/adminer
+  environment:
+   - VIRTUAL_HOST=adminer.local
+  links:
+   - dbNiwi
